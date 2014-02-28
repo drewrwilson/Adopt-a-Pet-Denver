@@ -1,13 +1,19 @@
 var request = require('request');
 var restify = require('restify');
-
+var chalk = require('chalk');
 var server = restify.createServer({
     name: 'myapp',
     version: '1.0.0'
 });
 
-var regexp = new RegExp(/ID=([^&]+)/gi);
-var regexpTwo = new RegExp(/<font\ class="Title">*([^&]+)/gi);
+var regexp = new RegExp(/ID=([^&]+)/gi); // id
+var regexpTwo = new RegExp(/<font\ class="Title">*([^&]+)/gi); // name 
+var regexpThree = new RegExp(/[^</font>][^&]+[^<BR>]/g); // ?
+var regexpFour = new RegExp(/<\/font>(.+?)<BR><br>/g); // desc
+var regexpFive = new RegExp(/[^<\/font>](.+?)+[^<BR><br>]/g); // desc
+var bodyRegex = new RegExp(/[^<body></body>](.?)+[^</body>]/g);
+var stingRegEx; // desc
+var stringRegExp;
 
 var _id = undefined;
 var idParams = [];
@@ -18,6 +24,7 @@ var endpointTwo;
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
+server.use(restify.CORS());
 
 server.get('/', function(req, res) {
     request(endpoint, function(err, req, body) {
@@ -26,29 +33,49 @@ server.get('/', function(req, res) {
         // console.log(req.body);
         idParams = regexp.exec(body);
         _id = idParams[1];
+        stringRegExp = "[^" + _id + "<BR><BR><\/font>][^<BR><br>]"
+        regexpSix = new RegExp(stringRegExp, "g");
 
         endpointTwo = 'http://www.petharbor.com/detail.asp?ID=' + _id + '&LOCATION=DNVR&searchtype=rnd&shelterlist=%27DNVR%27&where=dummy&kiosk=1';
-        console.log(endpointTwo);
-
-        // 
-        var animaldata = {
-            name: "Spot",
-            pic: "http://www.petharbor.com/get_image.asp?RES=detail&ID=" + _id + "&LOCATION=DNVR",
-            id: _id,
-            desc: "Cute doggy. OMG adopt him. He needs a home so badly. Please do it."
-        };
+        // console.log(endpointTwo);
 
         request(endpointTwo, function(err, req, body) {
             if (err) throw err;
-            var body= req.body;
+            var body = req.body;
             var nameParams = regexpTwo.exec(body);
-            
-            var name=  nameParams[1];
-            console.log(name);
+
+            var name = nameParams[1];
+            // console.log(name);
+            //console.log(body.match(regexpThree));
+
+            // var descParams = regexpSix.exec(body);
+            // var descParams = body.match(regexpSix);
+            // var desc = descParams.toString();
+            // console.log(regexpSix)
+            // console.log(typeof descParams);
+            // console.log("descParams: " + desc);
+            var stingRegEx = _id + "<BR><BR><\/font>(.*?)<BR><br>";
+            var regexpSeven = new RegExp(stingRegEx, "g");
+
+
+            // var responseBody = body.match(regexpSeven).toString();
+            var responseBody = regexpSeven.exec(body);
+            var desc = responseBody[1];
+            desc = desc.replace(/<BR><BR>/," ").replace(/<BR><BR>/, " ");
+            console.log(desc);
+            // 
+            var animaldata = {
+                name: name,
+                pic: "http://www.petharbor.com/get_image.asp?RES=detail&ID=" + _id + "&LOCATION=DNVR",
+                id: _id,
+                desc: desc
+            };
+            res.send(animaldata);
+            res.end();
         });
 
         // payload for request
-        res.end(endpointTwo);
+
     });
 
 });
