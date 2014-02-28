@@ -1,7 +1,7 @@
 {
-    "name": "adoptPetIdeadDrew",
+    "name": "adoptDenver",
     "version": "0.0.1",
-    "description": "yay!",
+    "description": "yay Denver Adopt this pet!",
     "main": "app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
         "type": "git",
         "url": "https://github.com/dviramontes/adoptThisPetAPI.git"
     },
-    "author": "",
+    "author": "Andrew Wilson + David Viramontes",
     "license": "BSD-2-Clause",
     "dependencies": {
         "request": "~2.34.0",
@@ -19,6 +19,7 @@
         "should": "~3.1.3"
     },
     "engines": {
-        "node": "0.10.x"
+        "node": "0.10.x",
+        "npm": "1.2.x"
     }
 }

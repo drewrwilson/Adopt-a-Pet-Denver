@@ -1,9 +1,10 @@
 var request = require('request');
 var restify = require('restify');
 var chalk = require('chalk');
+
 var server = restify.createServer({
-    name: 'myapp',
-    version: '1.0.0'
+    name: 'adoptDenver',
+    version: '0.0.1'
 });
 
 var regexp = new RegExp(/ID=([^&]+)/gi); // id
@@ -61,7 +62,7 @@ server.get('/', function(req, res) {
             // var responseBody = body.match(regexpSeven).toString();
             var responseBody = regexpSeven.exec(body);
             var desc = responseBody[1];
-            desc = desc.replace(/<BR><BR>/," ").replace(/<BR><BR>/, " ");
+            desc = desc.replace(/<BR><BR>/, " ").replace(/<BR><BR>/, " ");
             console.log(desc);
             // 
             var animaldata = {
@@ -80,6 +81,8 @@ server.get('/', function(req, res) {
 
 });
 
-server.listen('8080', function() {
+var port = process.env.PORT || 8080;
+
+server.listen(port, function() {
     console.log('%s listening at %s', server.name, server.url);
 })
