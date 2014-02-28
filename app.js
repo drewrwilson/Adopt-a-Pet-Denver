@@ -26,6 +26,7 @@ server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 server.use(restify.CORS());
+server.use(restify.fullResponse());
 
 server.get('/', function(req, res) {
     request(endpoint, function(err, req, body) {
@@ -46,20 +47,10 @@ server.get('/', function(req, res) {
             var nameParams = regexpTwo.exec(body);
 
             var name = nameParams[1];
-            // console.log(name);
-            //console.log(body.match(regexpThree));
 
-            // var descParams = regexpSix.exec(body);
-            // var descParams = body.match(regexpSix);
-            // var desc = descParams.toString();
-            // console.log(regexpSix)
-            // console.log(typeof descParams);
-            // console.log("descParams: " + desc);
             var stingRegEx = _id + "<BR><BR><\/font>(.*?)<BR><br>";
             var regexpSeven = new RegExp(stingRegEx, "g");
 
-
-            // var responseBody = body.match(regexpSeven).toString();
             var responseBody = regexpSeven.exec(body);
             var desc = responseBody[1];
             desc = desc.replace(/<BR><BR>/, " ").replace(/<BR><BR>/, " ");
