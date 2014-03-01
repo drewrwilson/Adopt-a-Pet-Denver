@@ -1,0 +1,59 @@
+<head>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+<script src="load-random-animal.js"></script>
+</head>
+
+<script id="animal-template" type="text/x-handlebars-template">
+	<div class="row">
+	<div class="col-sm-6 text-left green">
+			<i class="fa fa-check-circle"></i> Adoptable!
+		</div>
+		<div class="col-sm-6 text-right">
+			Pet ID: {{id}}
+		</div>
+	</div>
+	<div class="animal-image thumbnail">
+		<img src="{{pic}}" class="img-rounded text-center" width="600px" />
+		<div class="thumbnail-text">
+		<h1>{{name}}</h1>
+		<p>{{desc}}</p>
+		</div>
+	</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10 col-md-10-offset-2">
+		<div class="share-this">Tell your friends about {{name}}. Share this:</div>
+			<ul class="social-buttons">
+	        <li>
+	          <a target="_blank" href="#" class="btn btn-primary btn-large facebook">
+	        	<i class="fa fa-facebook-square"></i> Facebook
+	          </a>
+	        </li>
+
+	        <li>
+	          <a target="_blank" href="#" class="btn btn-primary btn-large">
+	            <i class="fa fa-twitter"></i> Twitter
+	          </a>
+	        </li>
+	      </ul>
+	     </div>
+
+	</div>
+</script>
+
+<script>
+
+</script>
+
+<body>
+	<div class="outer-wrapper">
+		<div class="main-box">
+			<div id="the-thing"></div>
+		</div>
+	</div>
+
+</body>

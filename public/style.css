@@ -1,0 +1,50 @@
+body {
+	background: #000;
+	margin: 10px;
+}
+#the-thing {
+	background: #fff;
+	border-radius: 2px;
+	padding: 10px;
+}
+.thumbnail {
+	position: relative;
+	width: 400px;
+}
+.thumbnail-text {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 0px 15px 5px 15px;
+	background: rgba(54, 25, 25);
+	background: rgba(54, 25, 25, .5);
+	color: #fff;
+}
+.animal-image h1 {
+	font-size: 18px
+}
+.animal-image p {
+	font-size: 12px;
+}
+ul {
+	list-style: none;
+}
+li {
+	display: inline;
+	padding: 0px 25px 0px 0px;
+}
+.facebook {
+	background: #3B5998;
+}
+.outer-wrapper {
+	width: 100%;
+}
+.main-box {
+	margin: 0 35%;
+	padding: 20px;
+	display: inline-block;
+}
+.green {
+	color:green;
+}
