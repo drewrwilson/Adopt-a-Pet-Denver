@@ -19,7 +19,7 @@ An API to serve data for animals currently in Denver animal shelters ready for a
 
 ```
 
-[Demo](http://glacial-taiga-3356.herokuapp.com)
+[Demo](http://adopt-a-pet-denver.herokuapp.com/)
 
 *More soon..*
 
